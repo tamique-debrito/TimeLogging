@@ -1,0 +1,68 @@
+App specification:
+	Main function:
+		Recording activities and notes in a low-friction way, in a format that is amenable to later analysis
+	Additional functions:
+		Recording ideas (should probably just be done with notes, adding an #idea tag)
+		Recording things with scalar or discrete values, such as mood or number of times something is done
+
+
+	Interface:
+		Just two main buttons, one for starting/ending an activity and one for adding a note.
+		When either an activity is ended or when a note is to be added, there will be a new interface for entering relevant information.
+
+	Information to record:
+		Common to both activities and notes will be tag information.
+			A tag is a short label added to a record of an activity or note that gives information about what topics the record is relevant to.
+			Each record can have multiple tags.
+			There will be a tag database that keeps a definition for each tag, so that tags are always used to mean the same thing (important for analysis of the records).
+
+		Activity:
+			in addition to tags, will record start and end times, as well as a title and description
+
+		Note:
+			records a note-taking time, title and note content
+
+	Code structure:
+		app:
+			methods:
+				show stopwatch frame
+				show activity entry frame
+				show note entry frame
+				show tag creation frame
+
+
+		view:
+			methods:
+				switch to stopwatch frame
+				switch to activity entry frame
+				switch to note entry frame
+				switch to tag entry frame
+
+				start stopwatch
+				end stopwatch
+
+				autoupdate clock display
+
+
+		presenter:
+			methods:
+				enter idle mode
+				enter timing mode
+				enter activity entry model
+				enter note entry model
+				enter tag entry mode
+
+				package and send activity
+				package and send note
+				package and send tag
+
+
+		model:
+			fields:
+				activity database
+				note database
+				tag database
+			methods:
+				add activity
+				add note
+				add tag

@@ -1,0 +1,8 @@
+Make functions to parse data from manual logs and add them to the database
+
+Features to add later:
+Tag utilities:
+    Autocompletion of tags
+    Tag organizer
+Measurements
+Pausing and resuming of activities
