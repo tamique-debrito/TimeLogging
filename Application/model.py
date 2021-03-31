@@ -18,7 +18,13 @@ class Model:
     def add_tag(self, name, definition):
         self.tag_db.add_tag(name, definition)
 
+    def add_metatag(self, metatag):
+        self.tag_db.add_metatag(metatag)
+
     def save(self):
         self.activity_db.save()
         self.note_db.save()
         self.tag_db.save()
+
+    def expand_metatag(self, metatag_name):
+        return self.tag_db.expand_metatag(metatag_name)

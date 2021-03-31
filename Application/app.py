@@ -26,6 +26,9 @@ class App(tk.Tk):
     def handle_switch_to_tag_entry(self):
         self.view.handle_switch_to_tag_entry()
 
+    def handle_switch_to_metatag_entry(self):
+        self.view.handle_switch_to_metatag_entry()
+
     def handle_submit(self):
         self.view.handle_submit()
 
@@ -44,6 +47,9 @@ class App(tk.Tk):
     def show_tag_entry_frame(self):
         self.display_frame(TagEntry)
 
+    def show_metatag_entry_frame(self):
+        self.display_frame(MetaTagEntry)
+
     def get_activity_data(self):
         assert type(
             self.current_frame) is ActivityEntry, "Tried to get activity data when currect frame is not ActivityEntry. " \
@@ -57,6 +63,11 @@ class App(tk.Tk):
 
     def get_tag_data(self):
         assert type(self.current_frame) is TagEntry, "Tried to get tag data when currect frame is not TagEntry. " \
+                                                     f"Current frame is {type(self.current_frame)}"
+        return self.get_data()
+
+    def get_metatag_data(self):
+        assert type(self.current_frame) is MetaTagEntry, "Tried to get metatag data when currect frame is not MetaTagEntry. " \
                                                      f"Current frame is {type(self.current_frame)}"
         return self.get_data()
 
@@ -96,15 +107,20 @@ class Home(tk.Frame):
         add_tag = tk.Button(self, text="Add tag",
                             command=lambda: master.handle_switch_to_tag_entry())
 
+        add_metatag = tk.Button(self, text="Add metatag",
+                            command=lambda: master.handle_switch_to_metatag_entry())
+
         self.timer_label = timer_label
         self.start_or_end_activity = start_or_end_activity
         self.add_note = add_note
         self.add_tag = add_tag
+        self.add_metatag = add_metatag
 
         self.timer_label.pack()
         self.start_or_end_activity.pack()
         self.add_note.pack()
         self.add_tag.pack()
+        self.add_metatag.pack()
 
     def update_timer_display(self, display_text):
         self.timer_label.config(text=display_text)
@@ -185,3 +201,34 @@ class TagEntry(tk.Frame):
             'name': self.name.get(),
             'definition': self.definition.get("1.0", tk.END)
         }
+
+class MetaTagEntry(tk.Frame):
+    def __init__(self, master):
+        tk.Frame.__init__(self, master)
+        self.master = master
+
+        name_label = tk.Label(self, text="MetaTag Name")
+        name = tk.Entry(self)
+        subtags_label = tk.Label(self, text="Subtags")
+        subtags = tk.Text(self)
+        submit = tk.Button(self, text="Submit",
+                           command=lambda: master.handle_submit())
+
+        self.name_label = name_label
+        self.name = name
+        self.subtags_label = subtags_label
+        self.subtags = subtags
+        self.submit = submit
+
+        self.name_label.pack()
+        self.name.pack()
+        self.subtags_label.pack()
+        self.subtags.pack()
+        self.submit.pack()
+
+    def get_data(self):
+        return {
+            'name': self.name.get(),
+            'subtags': self.subtags.get("1.0", tk.END)
+        }
+

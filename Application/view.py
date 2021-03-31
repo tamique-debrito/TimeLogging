@@ -37,6 +37,9 @@ class View:
     def handle_switch_to_tag_entry(self):
         self.presenter.handle_switch_to_tag_entry()
 
+    def handle_switch_to_metatag_entry(self):
+        self.presenter.handle_switch_to_metatag_entry()
+
     def handle_submit(self):
         self.presenter.handle_submit()
 
@@ -55,6 +58,9 @@ class View:
     def get_tag_data(self):
         return self.app.get_tag_data()
 
+    def get_metatag_data(self):
+        return self.app.get_metatag_data()
+
     def get_data(self):
         return self.app.get_data()
 
@@ -71,6 +77,9 @@ class View:
 
     def show_tag_entry(self):
         self.app.show_tag_entry_frame()
+
+    def show_metatag_entry(self):
+        self.app.show_metatag_entry_frame()
 
     def refresh_home(self):
         self.app.refresh_home()
