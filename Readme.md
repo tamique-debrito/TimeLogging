@@ -14,6 +14,6 @@ The basic unit of data is an activity record which has the following attributes:
 * (optional) details about the activity.
 * (optional) brief title of activity
 
-Also, can now define 'metatags' which will expand to a given set of tags to save entry time
-
+Also, can now define 'metatags' which will expand to a given set of tags to save entry time.
+Also, will now automatically save backups of data.
 Credit: App structure based off of https://github.com/jiffygist/TKimer
