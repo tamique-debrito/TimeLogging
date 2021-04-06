@@ -1,7 +1,7 @@
 import os
 import pickle
 
-SAVE_PATH = '../data/activity_db'
+SAVE_PATH = 'C:/Users/tamiq/PycharmProjects/TimeLogging/data/activity_db'
 
 class ActivityDatabase:
     """
@@ -9,21 +9,21 @@ class ActivityDatabase:
     Assumes that activities are added in chronological order
     """
 
-    def __init__(self, skip_load=False):
+    def __init__(self, postfix='', skip_load=False):
         self.db = []
         if os.path.exists(SAVE_PATH) and not skip_load:
-            self.load()
+            self.load(postfix)
 
     def add_activity(self, activity):
         self.db.append(activity)
 
 
-    def load(self):
-        with open(SAVE_PATH, 'rb') as db:
+    def load(self, postfix=''):
+        with open(SAVE_PATH + postfix, 'rb') as db:
             self.db = pickle.load(db)
 
-    def save(self):
-        with open(SAVE_PATH, 'wb') as db:
+    def save(self, postfix=''):
+        with open(SAVE_PATH + postfix, 'wb') as db:
             pickle.dump(self.db, db, pickle.HIGHEST_PROTOCOL)
 
     def __str__(self):

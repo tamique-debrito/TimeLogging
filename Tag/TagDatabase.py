@@ -3,7 +3,7 @@ import pickle
 
 from Tag.MetaTag import MetaTag
 
-SAVE_PATH = '../data/tag_db'
+SAVE_PATH = 'C:/Users/tamiq/PycharmProjects/TimeLogging/data/tag_db'
 
 class TagDBEntry:
     """
@@ -47,11 +47,11 @@ class TagDatabase:
         save(): saves to the save-path
     """
 
-    def __init__(self, skip_load=False):
+    def __init__(self, postfix='', skip_load=False):
         self.db = dict()
         self.metatags = dict()
         if os.path.exists(SAVE_PATH) and not skip_load:
-            self.load()
+            self.load(postfix)
 
     def add_tag(self, tag, definition=None):
         self.db[tag] = TagDBEntry(tag, definition)
@@ -69,8 +69,8 @@ class TagDatabase:
     def num_undefined(self):
         return sum([1 if not self.has_definition(tag) else 0 for tag in self.db])
 
-    def load(self):
-        with open(SAVE_PATH, 'rb') as f:
+    def load(self, postfix=''):
+        with open(SAVE_PATH + postfix, 'rb') as f:
             data = pickle.load(f)
         if 'db' in data and 'metatags' in data:
             self.db = data['db']
@@ -78,9 +78,9 @@ class TagDatabase:
         else:
             self.db = data
 
-    def save(self):
+    def save(self, postfix=''):
         data = {'db': self.db, 'metatags': self.metatags}
-        with open(SAVE_PATH, 'wb') as f:
+        with open(SAVE_PATH + postfix, 'wb') as f:
             pickle.dump(data, f, pickle.HIGHEST_PROTOCOL)
 
     def __str__(self):
