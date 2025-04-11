@@ -17,3 +17,8 @@ The basic unit of data is an activity record which has the following attributes:
 Also, can now define 'metatags' which will expand to a given set of tags to save entry time.
 Also, will now automatically save backups of data.
 Credit: App structure based off of https://github.com/jiffygist/TKimer
+
+![image](https://github.com/user-attachments/assets/a53e6777-41ae-4db1-88f9-c91cb6bcd364)
+![image](https://github.com/user-attachments/assets/9814b7ac-3660-454a-9212-bee4a915233b)
+![image](https://github.com/user-attachments/assets/ac07190e-a8b0-4f76-a527-9c43f0e72fc2)
+
